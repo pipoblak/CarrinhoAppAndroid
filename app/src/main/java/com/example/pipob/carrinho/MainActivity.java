@@ -83,13 +83,14 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else{
                     if(degrees>60 && degrees <125){
-                        webSocketNode.writeMessage("R"+1000 + "L"+ 1000);
+                        webSocketNode.writeMessage("R"+700 + "L"+ 750);
                     }
                     else if(degrees<60){
-                        webSocketNode.writeMessage("R"+500 + "L"+ 1000);
+                        webSocketNode.writeMessage("R"+1000 + "L"+ 500);
                     }
                     else if(degrees>125){
-                        webSocketNode.writeMessage("R"+1000 + "L"+ 500);
+                        webSocketNode.writeMessage("R"+500 + "L"+ 1000);
+
                     }
                 }
 

@@ -19,6 +19,7 @@ import java.util.List;
 public class WebSocketNode {
     WebSocketClient mWebSocketClient ;
     long delay=0;
+    String lastMessage="";
 
     List<String> queueMessage= new ArrayList<String>();
     Thread runMessage;
@@ -29,9 +30,13 @@ public class WebSocketNode {
 
                 if (running) {
                     if (!queueMessage.isEmpty() && mWebSocketClient.getReadyState() == WebSocket.READYSTATE.OPEN) {
-                        if (running) mWebSocketClient.send(queueMessage.get(0));
-
-                        if (running) queueMessage.remove(0);
+                        if (running){ 
+                            if(!lastMessage.equals(queueMessage.get(0)))
+                            mWebSocketClient.send(queueMessage.get(0));
+                            Log.v("Message",queueMessage.get(0));
+                            lastMessage = queueMessage.get(0);
+                            queueMessage.remove(0);
+                        }
                     }
                     try {
                         runMessage.sleep(delay);
